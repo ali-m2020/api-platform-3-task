@@ -22,7 +22,6 @@ class SearchReviewController extends AbstractController
         ],
     )]
 
-    // public function searchLatestPositiveReviewsForSpecificBrand(?string $carBrand, ReviewRepository $repo)
     public function __invoke(ReviewRepository $repo, string $car_brand = null)
     {
         if(!$car_brand) 
