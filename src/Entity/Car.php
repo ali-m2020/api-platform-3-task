@@ -2,17 +2,19 @@
 
 namespace App\Entity;
 
+use Assert\NotBlank;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CarRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ApiResource(
@@ -39,15 +41,18 @@ class Car
      * Referes to the manufacturer of the car, i.e. bmw
      */
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $brand = null;
 
     /**
      * Referes to the specific model of the car, i.e. m8-2019
      */
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $model = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $color = null;
 
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Review::class, orphanRemoval: true)]
