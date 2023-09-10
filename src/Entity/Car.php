@@ -15,9 +15,15 @@ class Car
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Referes to the manufacturer of the car, i.e. bmw
+     */
     #[ORM\Column(length: 255)]
     private ?string $brand = null;
 
+    /**
+     * Referes to the specific model of the car, i.e. m8-2019
+     */
     #[ORM\Column(length: 255)]
     private ?string $model = null;
 
