@@ -40,13 +40,12 @@ Now check out the site at `https://localhost:8000/api`
 Run Docker
 Make sure you have docker client up and running on your OS.
 Run the following command to start the app in its docker container
+```
 docker compose up -d
 ```
 DB remarks:
 Simply head over to the api endpoints and add your own data.
 They will be added to the dockerized PostgreSQL DB.
-```
-
 
 ## Thanks!
 
