@@ -25,7 +25,7 @@ To install the Symfony local web server, follow
 here: https://symfony.com/download - you only need to do this
 once on your system.
 
-Then, to start the web server, open a terminal, move into the
+To start the web server, open a terminal, move into the
 project, and run:
 
 ```
@@ -35,19 +35,24 @@ symfony serve
 (If this is your first time using this command, you may see an
 error that you need to run `symfony server:ca:install` first).
 
+### Navigating to API's entrypoint
 
 Now check out the API's entrypoint powered by OPEN-API (Swagger) by navigating to: 
 ```
 https://localhost:8000/api
 ```
-Run Docker
+
+### Run Docker
+
 Make sure you have docker client up and running on your OS.
 Run the following command to start the app in its docker container
 
 ```
 docker compose up -d
 ```
-DB remarks:
+
+### DB remarks:
+
 Simply head over to the api endpoints and add your own data.
 They will be added to the dockerized PostgreSQL DB.
 
