@@ -17,7 +17,6 @@ use ApiPlatform\Metadata\ApiFilter;
 use App\Repository\ReviewRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
-use App\Controller\SearchReviewController;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,18 +32,12 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Put(),
         new Patch(),
         // we can uncomment below, to allow delete operation.
-        // new Delete(),
-        // our custom operation
-        new GetCollection(
-            name: 'searchLatestPositiveReviews',
-            uriTemplate: 'my_reviews/list/get/{car.brand}',
-            controller: SearchReviewController::class
-        )
+        new Delete(),
     ]
 )]
-#[ApiFilter(SearchFilter::class, properties: [
-    'car.brand' => 'partial',
-])]
+// #[ApiFilter(SearchFilter::class, properties: [
+//     'car.brand' => 'partial',
+// ])]
 class Review
 {
     #[ORM\Id]
@@ -63,7 +56,7 @@ class Review
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    #[ApiFilter(SearchFilter::class, strategy: 'exact')]
+    // #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     private ?Car $car = null;
 
     public function getId(): ?int

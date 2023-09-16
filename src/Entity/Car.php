@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
+use App\Controller\SearchReview;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CarRepository;
 use ApiPlatform\Metadata\ApiResource;
@@ -22,6 +23,12 @@ use Symfony\Component\Validator\Constraints as Assert;
     description: 'Car Entity - as part of Devish Task done by Ali Mirza.',
     operations: [
         new Get(),
+        new GetCollection(
+            name: 'searchLatestPositiveReviews',
+            uriTemplate: '/my_reviews/list/latest_positive_reviews_per_car/{id}',
+            controller: SearchReview::class,
+            read: false,
+        ),
         new GetCollection(uriTemplate: '/my_cars/list/get'),
         new Post(),
         new Put(),

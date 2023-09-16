@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Car;
 use App\Entity\Review;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Review>
@@ -36,14 +37,16 @@ class ReviewRepository extends ServiceEntityRepository
     * @var int|null $carId
     * @return Review[] Returns an array of Review objects
     */
-   public function findLatestPositiveReviewsOfSpecificCar(?int $carId): array
+   public function findLatestPositiveReviewsOfSpecificCar(?Car $car): array
    {
+        if(!$car instanceof Car)
+        {
+            throw \Exception('Parameter is not instance of car!');
+        }
         return $this->createQueryBuilder('r')
-            ->innerJoin('r.car', 'c')
-            ->addSelect('c')
-            ->andWhere('c.id = :carId')
-            ->andWhere('r.starRating => :positiveThreshold')
-            ->setParameter('carId', $carId)
+            ->andWhere('r.car = :car')
+            ->andWhere('r.starRating >= :positiveThreshold')
+            ->setParameter('car', $car)
             ->setParameter('positiveThreshold', $this->POSITIVE_RATING_THRESHOLD)
             ->orderBy('r.id', 'ASC')
             ->setMaxResults($this->MAX_RESULTS)
