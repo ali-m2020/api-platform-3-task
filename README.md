@@ -35,12 +35,14 @@ symfony serve
 (If this is your first time using this command, you may see an
 error that you need to run `symfony server:ca:install` first).
 
+```
 Now check out the site at `https://localhost:8000/api`
 ```
 Run Docker
 Make sure you have docker client up and running on your OS.
 Run the following command to start the app in its docker container
 
+```
 docker compose up -d
 ```
 DB remarks:
