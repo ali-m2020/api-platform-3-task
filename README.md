@@ -36,7 +36,7 @@ symfony serve
 error that you need to run `symfony server:ca:install` first).
 
 
-Now check out the site at 
+Now check out the API's entrypoint powered by OPEN-API (Swagger) by navigating to: 
 ```
 https://localhost:8000/api
 ```
